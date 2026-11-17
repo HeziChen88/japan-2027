@@ -132,6 +132,19 @@ main{padding:26px 0 60px}
 .plist a:hover b{text-decoration:underline}
 .plist .d{display:block;color:var(--muted);font-size:.9rem}
 .ils{color:var(--muted);font-weight:400}
+#ticketTbl .tk-ok{width:34px;text-align:center;padding-inline:6px}
+.tk-v{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--matcha);color:var(--surface);font-weight:800;font-size:.9rem}
+.tk-no{display:inline-block;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);box-sizing:border-box}
+#ticketTbl tr.tk-bk td{background:var(--matcha-soft)}
+
+.btag{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:999px;vertical-align:1px;white-space:nowrap}
+.bt-paid{background:var(--matcha-soft);color:var(--matcha)}
+.bt-bk{background:var(--indigo-soft);color:var(--indigo)}
+.bt-est{background:var(--sun-soft);color:var(--sun)}
+#budTbl tfoot tr.bsum td{font-weight:600;color:var(--muted);font-size:.92rem}
+.bsplit{display:flex;flex-wrap:wrap;gap:6px 22px;margin:-4px 0 14px;color:var(--muted);font-size:.92rem}
+.bsplit b{color:var(--ink);font-size:1.05rem;margin-inline-end:4px}
+
 .ils.blk{display:block;font-size:.85em}
 .info-btn{background:none;border:0;padding:0 2px;font:inherit;font-size:.88rem;font-weight:600;color:var(--indigo);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .info-btn:focus-visible{outline:2px solid var(--indigo);outline-offset:2px;border-radius:3px}
@@ -686,14 +699,15 @@ h2{font-size:1.6rem;margin:0 0 6px}
 
   <section class="view" id="budget">
     <div class="sec">
-      <h2>תקציב משוער</h2>
-      <p class="lead">טווח מינימום־מקסימום, לאדם ולזוג. חדרים מחושבים כחדר טווין (שתי מיטות) מחולק לשניים.</p>
+      <h2>תקציב</h2>
+      <p class="lead">מה ששולם או הוזמן מחושב לפי המחיר הסופי בהזמנה, וכל השאר לפי הערכה של מינימום־מקסימום. לאדם ולזוג; חדר טווין מחולק לשניים. מחירי המלונות ביין, ולכן הסכום בשקלים זז עם השער.</p>
       <div class="ctrl">
         <label for="rate">שער: ¥ לכל ₪ 1</label>
         <input id="rate" type="number" step="0.5" min="10" max="100" value="42" inputmode="decimal">
         <span class="d" style="color:var(--muted);font-size:.9rem">עדכנו לשער היום. טיסות מוזנות בשקלים.</span>
       </div>
       <p>לאדם: <span class="total num" id="totPP">₪17,088–₪23,364</span></p>
+      <p class="bsplit" id="budSplit"></p>
       <div class="tbl-wrap"><table id="budTbl"><thead><tr><th>קטגוריה</th><th>ביין, לאדם</th><th>בשקלים, לאדם</th><th>בשקלים, לזוג</th></tr></thead><tbody><tr><td><b>טיסות הלוך ושוב</b><span class="d">הוזמן: איתיחאד, $1,878.68 לאדם, בשער של כ־3.5 ₪ לדולר</span></td><td class="n num" data-label="ביין, לאדם">—</td><td class="n num" data-label="בשקלים, לאדם">₪6,575–₪6,575</td><td class="n num" data-label="בשקלים, לזוג">₪13,150–₪13,150</td></tr><tr><td><b>לינה, 14 לילות</b><span class="d">טוקיו, שינג׳וקו: 2 לילות, ריוקאן בהאקונה, כולל ארוחת ערב ובוקר: 1 לילה, קיוטו: 3 לילות, אוסקה: 2 לילות, הירושימה: 2 לילות, טוקיו, אואנו: 4 לילות</span></td><td class="n num" data-label="ביין, לאדם">¥174,500–¥276,000</td><td class="n num" data-label="בשקלים, לאדם">₪4,155–₪6,571</td><td class="n num" data-label="בשקלים, לזוג">₪8,310–₪13,143</td></tr><tr><td><b>רכבות בין ערים ושדה תעופה</b><span class="d">שינקנסן, Narita Express, Skyliner, Romancecar, Hakone Free Pass, מעבורת</span></td><td class="n num" data-label="ביין, לאדם">¥71,540–¥74,750</td><td class="n num" data-label="בשקלים, לאדם">₪1,703–₪1,780</td><td class="n num" data-label="בשקלים, לזוג">₪3,407–₪3,560</td></tr><tr><td><b>תחבורה בתוך הערים</b><span class="d">מטרו, אוטובוסים ומוניות מדי פעם, ב־Suica</span></td><td class="n num" data-label="ביין, לאדם">¥15,000–¥27,000</td><td class="n num" data-label="בשקלים, לאדם">₪357–₪643</td><td class="n num" data-label="בשקלים, לזוג">₪714–₪1,286</td></tr><tr><td><b>אטרקציות וארוחות מתוכננות</b><span class="d">כל מה שמופיע בלו״ז עם מחיר, בלי פעילויות האופציה</span></td><td class="n num" data-label="ביין, לאדם">¥90,500–¥152,400</td><td class="n num" data-label="בשקלים, לאדם">₪2,155–₪3,629</td><td class="n num" data-label="בשקלים, לזוג">₪4,310–₪7,257</td></tr><tr><td><b>שאר האוכל</b><span class="d">ארוחות בוקר, צהריים וחטיפים שלא בלו״ז</span></td><td class="n num" data-label="ביין, לאדם">¥75,000–¥135,000</td><td class="n num" data-label="בשקלים, לאדם">₪1,786–₪3,214</td><td class="n num" data-label="בשקלים, לזוג">₪3,571–₪6,429</td></tr><tr><td><b>שילוח מזוודות, קניות קטנות, בלת״מ</b></td><td class="n num" data-label="ביין, לאדם">¥15,000–¥40,000</td><td class="n num" data-label="בשקלים, לאדם">₪357–₪952</td><td class="n num" data-label="בשקלים, לזוג">₪714–₪1,905</td></tr></tbody>
     <tfoot><tr><td>סה״כ</td><td></td><td class="n num">₪17,088–₪23,364</td><td class="n num">₪34,176–₪46,729</td></tr></tfoot></table></div>
     </div>
@@ -2053,9 +2067,9 @@ function renderDays(){
 /* tickets */
 function renderTickets(){
   document.getElementById("ticketTbl").innerHTML =
-   `<thead><tr><th>מה</th><th>רמה</th><th>מתי להזמין</th><th>איפה</th><th>אופציות</th><th>מחיר</th></tr></thead><tbody>` +
-   TICKETS.map(t => `<tr><td><b>${esc(t.n)}</b></td><td><span class="badge ${B[t.lvl][0]}">${B[t.lvl][1]}</span></td>
-     <td>${esc(t.when)}</td><td>${esc(t.where)}</td><td>${t.opts.split("; ").map(o=>`<span class="d">${yenText(esc(o))}</span>`).join("")}</td><td class="n num">${yenText(esc(t.cost))}</td></tr>`).join("") + "</tbody>";
+   `<thead><tr><th class="tk-ok" aria-label="הוזמן">✓</th><th>מה</th><th>רמה</th><th>מתי להזמין</th><th>איפה</th><th>אופציות</th><th>מחיר</th></tr></thead><tbody>` +
+   TICKETS.map(t => { const bk=/✓ הוזמן/.test(t.n); return `<tr class="${bk?"tk-bk":""}"><td class="tk-ok" data-label="הוזמן">${bk?'<span class="tk-v" title="הוזמן">✓</span>':'<span class="tk-no" title="עוד לא הוזמן"></span>'}</td><td><b>${esc(t.n.replace(/\s*✓ הוזמן/,""))}</b></td><td><span class="badge ${B[t.lvl][0]}">${B[t.lvl][1]}</span></td>
+     <td>${esc(t.when)}</td><td>${esc(t.where)}</td><td>${t.opts.split("; ").map(o=>`<span class="d">${yenText(esc(o))}</span>`).join("")}</td><td class="n num">${yenText(esc(t.cost))}</td></tr>`; }).join("") + "</tbody>";
   const tot = JR.reduce((s,r)=>s+r[1],0);
   document.getElementById("jrTbl").innerHTML =
    `<thead><tr><th>נסיעה</th><th>כרטיס רגיל</th></tr></thead><tbody>` +
@@ -2069,31 +2083,40 @@ function renderTickets(){
 function renderBudget(){
   const rate = getRate();
   const rows = [];
-  rows.push(["טיסות הלוך ושוב", null, [6575,6575], "הוזמן: איתיחאד, $1,878.68 לאדם, בשער של כ־3.5 ₪ לדולר"]);
-  let hlo=0, hhi=0;
-  HOTELS.forEach(h => { hlo += h.room[0]*h.nights/2; hhi += h.room[1]*h.nights/2; });
-  rows.push(["לינה, 14 לילות", [hlo,hhi], null, HOTELS.map(h=>`${h.n}: ${h.nights} ${h.nights>1?"לילות":"לילה"}`).join(", ")]);
+  const tag = {paid:["bt-paid","✓ שולם"], booked:["bt-bk","✓ הוזמן, מחיר סופי"], est:["bt-est","הערכה"]};
+  rows.push({n:"טיסות הלוך ושוב", st:"paid", ils:[6575,6575], d:"איתיחאד, $1,878.68 לאדם, בשער של כ־3.5 ₪ לדולר"});
+  BASES.slice().sort((a,b)=>a.start-b.start).forEach(b => {
+    const nn = `${b.nights} ${b.nights>1?"לילות":"לילה"}`;
+    if (b.booked) rows.push({n:`לינה: ${b.booked.hotel}`, st:"booked", yen:[b.booked.total/2,b.booked.total/2], d:`${b.name}, ${nn}. ${fmtY(b.booked.total)} לחדר, חצי לכל אחד. משלמים במלון ב־JPY.`});
+    else rows.push({n:`לינה: ${b.name}`, st:"est", yen:[b.room[0]*b.nights/2, b.room[1]*b.nights/2], d:`${nn}, עוד לא הוזמן`});
+  });
   let alo=0, ahi=0, tlo=0, thi=0;
   const isTrans = a => /שינקנסן|Express|Skyliner|Romancecar|Free Pass|רכבת|מעבורת/.test(a.n);
   DAYS.forEach(d => d.acts.forEach(a => { if (a.cost && !a.opt){ if (isTrans(a)){tlo+=a.cost[0];thi+=a.cost[1];} else {alo+=a.cost[0];ahi+=a.cost[1];} } }));
-  rows.push(["רכבות בין ערים ושדה תעופה", [tlo,thi], null, "שינקנסן, Narita Express, Skyliner, Romancecar, Hakone Free Pass, מעבורת"]);
-  rows.push(["תחבורה בתוך הערים", [1000*15, 1800*15], null, "מטרו, אוטובוסים ומוניות מדי פעם, ב־Suica"]);
-  rows.push(["אטרקציות וארוחות מתוכננות", [alo,ahi], null, "כל מה שמופיע בלו״ז עם מחיר, בלי פעילויות האופציה"]);
-  rows.push(["שאר האוכל", [5000*15, 9000*15], null, "ארוחות בוקר, צהריים וחטיפים שלא בלו״ז"]);
-  rows.push(["שילוח מזוודות, קניות קטנות, בלת״מ", [15000,40000], null, ""]);
+  rows.push({n:"רכבות בין ערים ושדה תעופה", st:"est", yen:[tlo,thi], d:"שינקנסן, Narita Express, Skyliner, Romancecar, Hakone Free Pass, מעבורת"});
+  rows.push({n:"תחבורה בתוך הערים", st:"est", yen:[1000*15, 1800*15], d:"מטרו, אוטובוסים ומוניות מדי פעם, ב־Suica"});
+  rows.push({n:"אטרקציות וארוחות מתוכננות", st:"est", yen:[alo,ahi], d:"כל מה שמופיע בלו״ז עם מחיר, בלי פעילויות האופציה"});
+  rows.push({n:"שאר האוכל", st:"est", yen:[5000*15, 9000*15], d:"ארוחות בוקר, צהריים וחטיפים שלא בלו״ז"});
+  rows.push({n:"שילוח מזוודות, קניות קטנות, בלת״מ", st:"est", yen:[15000,40000], d:"כולל מס לינה עירוני בקיוטו ובטוקיו, כמה אלפי ין"});
 
-  let totLo=0, totHi=0;
+  let totLo=0, totHi=0, fix=0, paid=0, eLo=0, eHi=0;
   const body = rows.map(r => {
-    const lo = r[1] ? r[1][0]/rate : r[2][0];
-    const hi = r[1] ? r[1][1]/rate : r[2][1];
+    const lo = r.yen ? r.yen[0]/rate : r.ils[0];
+    const hi = r.yen ? r.yen[1]/rate : r.ils[1];
     totLo+=lo; totHi+=hi;
-    const yen = r[1] ? `${fmtY(r[1][0])}–${fmtY(r[1][1])}` : "—";
-    return `<tr><td><b>${r[0]}</b>${r[3]?`<span class="d">${esc(r[3])}</span>`:""}</td><td class="n num">${yen}</td><td class="n num">${fmtS(lo)}–${fmtS(hi)}</td><td class="n num">${fmtS(lo*2)}–${fmtS(hi*2)}</td></tr>`;
+    if (r.st==="est"){ eLo+=lo; eHi+=hi; } else { fix+=lo; if (r.st==="paid") paid+=lo; }
+    const one = Math.round(lo)===Math.round(hi);
+    const rng = (a,b,f) => one ? f(a) : `${f(a)}–${f(b)}`;
+    const yen = r.yen ? rng(r.yen[0], r.yen[1], fmtY) : "—";
+    return `<tr class="br-${r.st}"><td><b>${esc(r.n)}</b> <span class="btag ${tag[r.st][0]}">${tag[r.st][1]}</span>${r.d?`<span class="d">${esc(r.d)}</span>`:""}</td><td class="n num">${yen}</td><td class="n num">${rng(lo,hi,fmtS)}</td><td class="n num">${rng(lo*2,hi*2,fmtS)}</td></tr>`;
   }).join("");
+  const sub = (lab,lo,hi,cls) => `<tr class="bsum ${cls}"><td>${lab}</td><td></td><td class="n num">${Math.round(lo)===Math.round(hi)?fmtS(lo):fmtS(lo)+"–"+fmtS(hi)}</td><td class="n num">${Math.round(lo)===Math.round(hi)?fmtS(lo*2):fmtS(lo*2)+"–"+fmtS(hi*2)}</td></tr>`;
   document.getElementById("budTbl").innerHTML =
    `<thead><tr><th>קטגוריה</th><th>ביין, לאדם</th><th>בשקלים, לאדם</th><th>בשקלים, לזוג</th></tr></thead><tbody>${body}</tbody>
-    <tfoot><tr><td>סה״כ</td><td></td><td class="n num">${fmtS(totLo)}–${fmtS(totHi)}</td><td class="n num">${fmtS(totLo*2)}–${fmtS(totHi*2)}</td></tr></tfoot>`;
+    <tfoot>${sub("שולם או הוזמן, מחיר סופי",fix,fix,"bs-fix")}${sub("הערכה לשאר",eLo,eHi,"bs-est")}<tr><td>סה״כ</td><td></td><td class="n num">${fmtS(totLo)}–${fmtS(totHi)}</td><td class="n num">${fmtS(totLo*2)}–${fmtS(totHi*2)}</td></tr></tfoot>`;
   document.getElementById("totPP").textContent = `${fmtS(totLo)}–${fmtS(totHi)}`;
+  const sp = document.getElementById("budSplit");
+  if (sp) sp.innerHTML = `<span><b class="num">${fmtS(fix)}</b> קבוע: ${fmtS(paid)} כבר שולם (טיסות), והשאר מלונות שהוזמנו ומשלמים בהם במקום</span><span><b class="num">${fmtS(eLo)}–${fmtS(eHi)}</b> הערכה לכל מה שעוד לא הוזמן</span>`;
 }
 
 /* facts */
